@@ -28,7 +28,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = int(os.getenv('DEBUG', 1))
+DEBUG = int(os.getenv('DEBUG'))
 
 ALLOWED_HOSTS = ['*']
 
