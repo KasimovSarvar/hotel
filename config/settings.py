@@ -14,7 +14,6 @@ from pathlib import Path
 from dotenv import load_dotenv
 load_dotenv()
 import os
-
 from django.conf.global_settings import STATICFILES_DIRS, MEDIA_ROOT, MEDIA_URL, STATIC_ROOT
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -25,9 +24,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY = 'django-insecure-2r)&^3y45=$15cse(sjamfw@%m1@y_-!e56x4kqc$1vd!o_r^+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+
 DEBUG = os.getenv('DEBUG')
 
 ALLOWED_HOSTS = ['*']
@@ -138,6 +138,7 @@ STATIC_ROOT = 'staticfiles'
 
 MEDIA_URL ='media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
