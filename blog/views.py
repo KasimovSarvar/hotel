@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from .models import Post, Contact, Comment, Category, Tag
 from django.core.paginator import Paginator
 import requests
+from django.conf import settings
 
 def home_view(request):
     posts = Post.objects.filter(is_published=True)
@@ -65,9 +66,6 @@ def about_view(request):
 
 
 def contact_view(request):
-    TELEGRAM_BOT_TOKEN = '7632821064:AAFFKswCcPGUObAES2a2AF6mSKzNnvvhM4I'
-    TELEGRAM_CHANNEL_ID = 1392306910
-
     if request.method == 'POST':
         data = request.POST
         name = data.get('name')
@@ -77,9 +75,8 @@ def contact_view(request):
 
         obj = Contact.objects.create(name=name, phone=phone, email=email, message=message)
         obj.save()
-        text = f'name: {name} \nemail: {email} \nphone: {phone} \nmessage:{message}'
-        url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage?chat_id={TELEGRAM_CHANNEL_ID}&text={text}"
-        res = requests.get(url)
+        res = requests.get(settings.BASE_URL.format(settings.TELEGRAM_BOT_TOKEN, settings.TELEGRAM_CHANNEL_ID,
+                                            f"name: {name} \nemail: {email} \nphone: {phone} \nmessage:{message}"))
         print(res)
 
         return redirect('/contact')
