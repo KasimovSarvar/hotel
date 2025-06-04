@@ -30,7 +30,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 
 DEBUG = int(os.getenv('DEBUG'))
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS')
 
 
 # Application definition
@@ -46,11 +46,13 @@ INSTALLED_APPS = [
     # external packages
     "phonenumber_field",
     "ckeditor",
+    "ckeditor_uploader",
     
     # local apps
     'blog'
 
 ]
+CKEDITOR_UPLOAD_PATH = "uploads/"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

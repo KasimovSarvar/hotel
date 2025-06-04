@@ -1,7 +1,7 @@
 from django.db import models
 from django.db.models import CASCADE
 from phonenumber_field.modelfields import PhoneNumberField
-from ckeditor.fields import RichTextField
+from ckeditor_uploader.fields import RichTextUploadingField
 
 
 class Category(models.Model):
@@ -28,14 +28,14 @@ class Tag(models.Model):
 
 
 class Post(models.Model):
-    tag = models.ManyToManyField(Tag, blank=True, null=True)
+    tag = models.ManyToManyField(Tag, blank=True)
     title = models.CharField(max_length=256)
     category = models.ForeignKey(Category, on_delete=CASCADE, related_name="posts")
     image = models.ImageField(upload_to="posts/", blank=True, null=True)
     image1 = models.ImageField(upload_to="posts/", blank=True, null=True)
     image2 = models.ImageField(upload_to="posts/", blank=True, null=True)
 
-    description = RichTextField(blank=True, null=True)
+    description = RichTextUploadingField(blank=True, null=True)
 
     is_published = models.BooleanField(default=False)
 
